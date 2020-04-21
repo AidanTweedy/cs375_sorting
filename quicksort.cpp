@@ -84,6 +84,8 @@ int main(){
     for(int i = 0; i < ARR_SIZE-1; i++){ //fills sort_array[] with randNum numbers to be sorted
         sort_array[i] = rand();
     }
+    
+    //QUICK SORT
     auto start = high_resolution_clock::now(); //Begin timer
   
     quick_sort(sort_array, 0, n-1);
@@ -95,15 +97,15 @@ int main(){
     print_array(sort_array, TTS);
 
     //RAND QUICK SORT
-    auto start = high_resolution_clock::now(); //Begin timer
+    auto start2 = high_resolution_clock::now(); //Begin timer
   
-    quick_sort_rand(sort_array, 0, n-1);
+    quick_sort_rand(sort_copy, 0, n-1);
     
-    auto stop = high_resolution_clock::now(); //End timer
-    auto duration = duration_cast<microseconds>(stop - start); //Time of sort in microseconds
-    TTS = duration.count(); //Time to sort
+    auto stop2 = high_resolution_clock::now(); //End timer
+    auto duration2 = duration_cast<microseconds>(stop - start); //Time of sort in microseconds
+    TTS = duration2.count(); //Time to sort
 
-    print_array(sort_array, TTS);
+    print_array(sort_copy, TTS);
 
     return 0;
 
