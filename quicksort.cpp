@@ -1,10 +1,17 @@
-#include <iostream>
+
 #include <stdio.h> 
 #include <stdlib.h>
 #include <time.h> 
 #include <algorithm>
-#include <chrono> 
 #include <thread>
+#include <iostream> 
+#include <string.h>
+#include <string>
+#include <vector>
+#include <fstream>
+#include <sstream>
+#include <chrono> 
+#include <ctime>
 
 using namespace std;
 using namespace std::chrono;
