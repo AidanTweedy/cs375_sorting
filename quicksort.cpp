@@ -124,10 +124,11 @@ int main(){
         auto stop = high_resolution_clock::now(); //End timer
         auto duration = duration_cast<microseconds>(stop - start); //Time of sort in microseconds
         float TTS = duration.count(); //Time to sort
+        out << "TIME TO SORT: " << TTS;
 
-        print_array(sort_array, TTS);
+        //print_array(arr, TTS);
     }
-    out.close
+    out.close;
 /*
     //RAND QUICK SORT
     auto start2 = high_resolution_clock::now(); //Begin timer
