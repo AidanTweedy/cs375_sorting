@@ -41,7 +41,7 @@ int partition(int arr[], int lowest, int highest){ //splits array based on pivot
     return (i + 1);  
 }  
 
-int partititon_rand(int arr[], int low, int high){ //chooses random pivot
+int partition_rand(int arr[], int low, int high){ //chooses random pivot
     int randNum = low + rand() % (high - low); 
 
     swap(arr[randNum], arr[high]); 
