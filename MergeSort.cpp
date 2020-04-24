@@ -19,29 +19,61 @@ int main(int argc, char *argv[]) {
 
     string line;
     vector<int> input;
-    getline(infile,line);
-    stringstream s(line);
+    vector<vector<int>> test_cases;
+    while(getline(infile,line)) {
+        //getline(infile,line);
+        stringstream s(line);
 
-    while(s.good()) {
-        string temp = "";
-        getline(s,temp,',');
-        int i = stoi(temp);
-        input.push_back(i);
+        while(s.good()) {
+            string temp = "";
+            getline(s,temp,',');
+            int i = stoi(temp);
+            input.push_back(i);
+        }
+        test_cases.push_back(input);
+        input.clear();
     }
-    int arr[input.size()];
-    for(int i = 0; i < input.size(); i++) {
-        arr[i] = input.at(i);
+    out << "Before sorting: " << endl;
+    out << "-----------------------" << endl;
+    for(int i = 0; i < test_cases.size(); i++) {
+        for(int j = 0; j < test_cases.at(i).size(); j++) {
+            out << test_cases.at(i).at(j) << ",";
+        }
+        out << "" << endl;
     }
-    chrono::time_point<chrono::system_clock> start, end;  
-    start = chrono::system_clock::now();
-    mergeSort(arr,0,input.size()-1);
-    for(int i = 0; i < input.size(); i++) {
-        out << arr[i] << ",";
+    chrono::time_point<chrono::system_clock> start, end;
+    out << "-----------------------" << endl;
+    out << "After sorting" << endl;
+    out << "-----------------------" << endl;
+    for(int i = 0; i < test_cases.size(); i++) {
+        int arr[test_cases.at(i).size()];
+        for(int j = 0; j < test_cases.at(i).size(); j++) {
+           arr[j] = test_cases.at(i).at(j);
+        }
+        start = chrono::system_clock::now();
+        mergeSort(arr,0,test_cases.at(i).size()-1);
+        end = chrono::system_clock::now();
+        chrono::duration<double> elapsed = end - start;
+        for(int j = 0; j < test_cases.at(i).size(); j++) {
+            out << arr[j] << ",";
+        }
+        out << "" << endl;
+        out << "Time to complete sort: " << elapsed.count() << " seconds" << endl;
     }
-    out << "" << endl;
-    end = chrono::system_clock::now();
-    chrono::duration<double> elapsed = end - start;
-    out << elapsed.count() << " seconds" << endl;
+    // int arr[input.size()];
+    // for(int i = 0; i < input.size(); i++) {
+    //     arr[i] = input.at(i);
+    // }
+      
+    // start = chrono::system_clock::now();
+    // mergeSort(arr,0,input.size()-1);
+    // for(int i = 0; i < input.size(); i++) {
+    //     out << arr[i] << ",";
+    // }
+    // out << "" << endl;
+    // end = chrono::system_clock::now();
+    // chrono::duration<double> elapsed = end - start;
+    // out << elapsed.count() << " seconds" << endl;
     out.close();
     return 0;
 }
