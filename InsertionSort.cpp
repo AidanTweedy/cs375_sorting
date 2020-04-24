@@ -6,6 +6,15 @@
 #include <chrono> 
 #include <thread>
 
+#include <iostream> 
+#include <string.h>
+#include <string>
+#include <vector>
+#include <fstream>
+#include <sstream>
+#include <chrono> 
+#include <ctime>
+
 
 using namespace std;
 using namespace std::chrono;
@@ -40,8 +49,10 @@ void insertionSort(int sort_array[], int n)
     }  
 }  
 //Driver
-int main()  
+int main(int argc, char *argv[])
 {  
+    /*
+    //change to main()
     static int ARR_SIZE = 265;
     int sort_array[ARR_SIZE]; 
     for(int i = 0; i < ARR_SIZE-1; i++){ 
@@ -63,5 +74,62 @@ int main()
     printArray(sort_array, n);  
     cout << "Time to sort: " << TTS << " μs" << endl;
     return 0;  
-}  
-  
+    */
+    ifstream infile(argv[1]);
+    ofstream out;
+    out.open((argv[2]));
+
+    string line;
+    vector<int> input;
+    vector<vector<int>> test_cases;
+    while(getline(infile,line)) {
+        //getline(infile,line);
+        stringstream s(line);
+
+        while(s.good()) {
+            string temp = "";
+            getline(s,temp,',');
+            int i = stoi(temp);
+            input.push_back(i);
+        }
+        test_cases.push_back(input);
+        input.clear();
+    }
+    out << "Before sorting: " << endl;
+    out << "-----------------------" << endl;
+    for(int i = 0; i < test_cases.size(); i++) {
+        for(int j = 0; j < test_cases.at(i).size(); j++) {
+            out << test_cases.at(i).at(j) << ",";
+        }
+        out << "" << endl;
+    }
+    chrono::time_point<chrono::system_clock> start, end;
+    out << "-----------------------" << endl;
+    out << "After sorting" << endl;
+    out << "-----------------------" << endl;
+    for(int i = 0; i < test_cases.size(); i++) {
+        int arr[test_cases.at(i).size()];
+        for(int j = 0; j < test_cases.at(i).size(); j++) {
+           arr[j] = test_cases.at(i).at(j);
+        }
+        int n = sizeof(arr) / sizeof(arr[0]);  
+        start = chrono::system_clock::now();
+        insertionSort(arr,n);
+        end = chrono::system_clock::now();
+        auto duration = duration_cast<microseconds>(end - start); //Time of sort in microseconds
+        float TTS = duration.count(); //Time to sort
+        out << "TIME TO SORT: " << TTS << " microseconds" << "\n";
+
+        /*
+        for(int j = 0; j < test_cases.at(i).size(); j++) {
+            out << arr[j] << ",";
+        }
+        out << "" << endl;
+        */
+        //out << "Time to complete sort: " << elapsed.count() << " seconds" << endl;
+    }
+    out.close();
+    return 0;
+    
+}
+
