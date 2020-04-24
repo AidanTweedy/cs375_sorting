@@ -128,7 +128,7 @@ int main(int argc, char *argv[]){
 
         //print_array(arr, TTS);
     }
-    out.close;
+    out.close();
 /*
     //RAND QUICK SORT
     auto start2 = high_resolution_clock::now(); //Begin timer
