@@ -124,7 +124,7 @@ int main(int argc, char *argv[]){
         auto stop = high_resolution_clock::now(); //End timer
         auto duration = duration_cast<microseconds>(stop - start); //Time of sort in microseconds
         float TTS = duration.count(); //Time to sort
-        out << "TIME TO SORT: " << TTS << "microseconds" << "\n";
+        out << "TIME TO SORT: " << TTS << " microseconds" << "\n";
 
         //print_array(arr, TTS);
     }
