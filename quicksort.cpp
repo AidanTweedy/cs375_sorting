@@ -115,20 +115,20 @@ int main(){
         int arr[test_cases.at(i).size()];
         for(int j = 0; j < test_cases.at(i).size(); j++) {
            arr[j] = test_cases.at(i).at(j);
-    }
-
-    int n = sizeof(arr) / sizeof(arr[0]);
-    //QUICK SORT
-    auto start = high_resolution_clock::now(); //Begin timer
+        }
+        int n = sizeof(arr) / sizeof(arr[0]);
+        auto start = high_resolution_clock::now(); //Begin timer
   
-    quick_sort(arr, 0, n-1);
+        quick_sort(arr, 0, n-1);
     
-    auto stop = high_resolution_clock::now(); //End timer
-    auto duration = duration_cast<microseconds>(stop - start); //Time of sort in microseconds
-    float TTS = duration.count(); //Time to sort
+        auto stop = high_resolution_clock::now(); //End timer
+        auto duration = duration_cast<microseconds>(stop - start); //Time of sort in microseconds
+        float TTS = duration.count(); //Time to sort
 
-    print_array(sort_array, TTS);
-
+        print_array(sort_array, TTS);
+    }
+    out.close
+/*
     //RAND QUICK SORT
     auto start2 = high_resolution_clock::now(); //Begin timer
   
@@ -141,5 +141,6 @@ int main(){
     print_array(sort_copy, TTS);
 
     return 0;
+    */
 
 }
