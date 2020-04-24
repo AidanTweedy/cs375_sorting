@@ -11,4 +11,4 @@ clean:
 	rm -rf quicksort *.o
 
 run: all
-	./quicksort
+	./quicksort input.txt output.txt
