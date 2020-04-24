@@ -73,22 +73,48 @@ void print_array(int arr[], float time){ //function to print array and time to s
 }
 
 int main(){
-    int sort_array[ARR_SIZE]; //initialize array
-    int sort_copy[ARR_SIZE];
-    copy(begin(sort_array), end(sort_array), begin(sort_copy)); //Copy to second array so both sorts start with same array
+    ifstream infile(argv[1]);
+    ofstream out;
+    out.open((argv[2]));
 
-    int n = sizeof(sort_array) / sizeof(sort_array[0]);
+    string line;
+    vector<int> input;
+    vector<vector<int>> test_cases;
+    while(getline(infile,line)) {
+        //getline(infile,line);
+        stringstream s(line);
 
-    srand(time(0)); //Seeds randNum number generation based on system time
-    
-    for(int i = 0; i < ARR_SIZE-1; i++){ //fills sort_array[] with randNum numbers to be sorted
-        sort_array[i] = rand();
+        while(s.good()) {
+            string temp = "";
+            getline(s,temp,',');
+            int i = stoi(temp);
+            input.push_back(i);
+        }
+        test_cases.push_back(input);
+        input.clear();
     }
-    
+    out << "Before sorting: " << endl;
+    out << "-----------------------" << endl;
+    for(int i = 0; i < test_cases.size(); i++) {
+        for(int j = 0; j < test_cases.at(i).size(); j++) {
+            out << test_cases.at(i).at(j) << ",";
+        }
+        out << "" << endl;
+    }
+    out << "-----------------------" << endl;
+    out << "After sorting" << endl;
+    out << "-----------------------" << endl;
+    for(int i = 0; i < test_cases.size(); i++) {
+        int arr[test_cases.at(i).size()];
+        for(int j = 0; j < test_cases.at(i).size(); j++) {
+           arr[j] = test_cases.at(i).at(j);
+    }
+
+    int n = sizeof(arr) / sizeof(arr[0]);
     //QUICK SORT
     auto start = high_resolution_clock::now(); //Begin timer
   
-    quick_sort(sort_array, 0, n-1);
+    quick_sort(arr, 0, n-1);
     
     auto stop = high_resolution_clock::now(); //End timer
     auto duration = duration_cast<microseconds>(stop - start); //Time of sort in microseconds
@@ -99,7 +125,7 @@ int main(){
     //RAND QUICK SORT
     auto start2 = high_resolution_clock::now(); //Begin timer
   
-    quick_sort_rand(sort_copy, 0, n-1);
+    quick_sort_rand(arr, 0, n-1);
     
     auto stop2 = high_resolution_clock::now(); //End timer
     auto duration2 = duration_cast<microseconds>(stop - start); //Time of sort in microseconds
