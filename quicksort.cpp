@@ -79,7 +79,7 @@ void print_array(int arr[], float time){ //function to print array and time to s
     cout << "Time to sort: " << time << "\n";
 }
 
-int main(){
+int main(int argc, char *argv[]){
     ifstream infile(argv[1]);
     ofstream out;
     out.open((argv[2]));
