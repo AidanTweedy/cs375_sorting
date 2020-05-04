@@ -1,0 +1,20 @@
+Quicksort
+
+Data Structures:
+Data structures used include vectors to help organize input being taken in from text file, and arrays for that stored information to be sorted.
+
+Time complexity:
+
+Best time complexity : O(n log n)
+Average time complexity : O(n log n)
+Worst time complexity : O(n^2)
+More information on slides
+
+Classes Used:
+main - used as the driver for the code
+QuickSort- performs QuickSort algorithm on given array
+Quicksort_rand - performs Quicksort Algorithm using a random pivot
+Swap - helper to swap elements in the array
+Partition - partitions array based on last element
+Partition_rand - partitions array based on random pivot
+Print_array - prints array and time to sort
